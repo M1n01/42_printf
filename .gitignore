@@ -1,0 +1,9 @@
+*.a
+a.out
+main.c
+.vscode
+.DS_Store
+*.o
+test.sh
+printfTester
+test.c
