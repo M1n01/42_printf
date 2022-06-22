@@ -12,28 +12,31 @@
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+int	ft_putnbr(long long n)
 {
+	int	res;
+
+	res = 0;
 	if (n == INT_MIN)
 	{
 		n /= 10;
-		ft_putnbr(n);
-		ft_putchar('8');
-		return ;
+		res += ft_putnbr(n);
+		res += ft_putchar('8');
+		return (res);
 	}
 	if (n < 0)
 	{
-		ft_putchar('-');
+		res += ft_putchar('-');
 		n *= -1;
-		ft_putnbr(n);
-		return ;
+		res += ft_putnbr(n);
+		return (res);
 	}
 	if (n < 10)
 	{
-		ft_putchar(n + '0');
-		return ;
+		res += ft_putchar(n + '0');
+		return (res);
 	}
-	ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
-	return ;
+	res += ft_putnbr(n / 10);
+	res += ft_putchar(n % 10 + '0');
+	return (res);
 }

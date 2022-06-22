@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:09:28 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 08:34:33 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/21 22:00:03 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 int	ft_printf(const char *format, ...);
 int	get_digits(int	d);
+int	putnbr_hex(unsigned long long nbr);
 int	put_c(char c);
 int	put_s(char *s);
-int	put_d(va_list *ap);
-int	put_x(va_list *ap);
-
+int	put_p(unsigned long long ptr);
+int	put_d(int d);
+int	put_u(unsigned int ud);
+int	put_x(unsigned int d);
 
 #endif

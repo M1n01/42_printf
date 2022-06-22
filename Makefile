@@ -5,7 +5,7 @@ INCDIR = -I./include -I./libft/include
 CFLAGS = -Wall -Wextra -Werror $(INCDIR)
 LFLAGS = 
 
-MANDATORY = ft_printf.c process_ascii.c
+MANDATORY = ft_printf.c process_ascii.c process_ptr.c process_int.c process_hex.c
 BONUS = 
 TEST = ft_putstr.c ft_putchar.c ft_atoi.c ft_isspace.c ft_isdigit.c ft_strchr.c ft_strlen.c
 

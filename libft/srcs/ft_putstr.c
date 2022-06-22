@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 17:17:39 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/19 11:41:53 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:15:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,5 @@
 
 int	ft_putstr(char *s)
 {
-	int	res;
-
-	res = 0;
-	write(1, s, ft_strlen(s));
-	return (res);
+	return (write(1, s, ft_strlen(s)));
 }

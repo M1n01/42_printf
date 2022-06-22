@@ -6,54 +6,42 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:48:31 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 08:40:44 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/21 22:13:48 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	put_n(int d, int padding);
+static int	ft_putuint(unsigned int n);
 
-int	put_d(va_list ap)
+int	put_d(int d)
 {
-	int	d;
-	int	len;
 	int	res;
 
-	d = va_arg(ap, int);
-	len = get_digits(d);
 	res = 0;
-	while ((width - putlen) > 0)
-	{
-		res += ft_putchar(' ');
-		width--;
-	}
-	return (res + put_n(d, padding));
+	return (res + ft_putnbr(d));
 }
 
-static int	put_n(int d, int padding)
+int	put_u(unsigned int ud)
 {
 	int	res;
 
 	res = 0;
-	if (d == INT_MIN)
+	return (res + ft_putuint(ud));
+}
+
+static int	ft_putuint(unsigned int n)
+{
+	int	res;
+
+	res = 0;
+	if (n < 10)
 	{
-		res += ft_putchar('-');
-		while (padding-- > 0)
-			res += ft_putchar('0');
-		res += ft_putstr("2147483648");
+		res += ft_putchar(n + '0');
 		return (res);
 	}
-	if (d < 0)
-	{
-		res += ft_putchar('-');
-		d *= -1;
-	}
-	while (padding-- > 0)
-		res += ft_putchar('0');
-	if (d / 10)
-		res += put_n(d / 10, padding);
-	res += ft_putchar((d % 10) + '0');
+	res += ft_putnbr(n / 10);
+	res += ft_putchar(n % 10 + '0');
 	return (res);
 }

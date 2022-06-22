@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:14:49 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/19 09:35:35 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/22 10:40:38 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
 void	ft_putendl(char *s);
-void	ft_putnbr(int n);
+int		ft_putnbr(long long n);
 
 #endif

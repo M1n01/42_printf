@@ -6,31 +6,25 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:27 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 08:49:15 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/21 21:57:42 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	get_digits(int	d)
+int	putnbr_hex(unsigned long long nbr)
 {
-	int	digits;
+	int	res;
 
-	if (d == -2147483648)
-		return (11);
-	digits = 0;
-	if (d < 0)
-	{
-		digits++;
-		d *= -1;
-	}
-	while (d / 10)
-	{
-		digits++;
-		d /= 10;
-	}
-	return (digits);
+	res = 0;
+	if (nbr / 16 != 0)
+		res += putnbr_hex(nbr / 16);
+	if ((nbr % 16) >= 10)
+		res += ft_putchar((nbr % 16) - 10 + 'a');
+	else
+		res += ft_putchar((nbr % 16) + '0');
+	return (res);
 }
 
 static int	put_conv(char *iter, va_list *ap)
@@ -39,20 +33,18 @@ static int	put_conv(char *iter, va_list *ap)
 		return (put_c(va_arg(*ap, int)));
 	else if (*iter == 's')
 		return (put_s(va_arg(*ap, char *)));
-	// else if (*iter == 'p')
-	// 	return (put_p(*ap));
-	// else if (*iter == 'd')
-	// 	return (put_d(*ap));
-	// else if (*iter == 'i')
-	// 	return (put_i(*ap));
-	// else if (*iter == 'u')
-	// 	return (put_u(*ap));
-	// else if (*iter == 'x')
-	// 	return (put_x(*ap));
-	// else if (*iter == 'X')
-	// 	return (put_X(*ap));
+	else if (*iter == 'p')
+		return (put_p((unsigned long long)va_arg(*ap, void *)));
+	else if (*iter == 'd' || *iter == 'i')
+		return (put_d(va_arg(*ap, int)));
+	else if (*iter == 'u')
+		return (put_u((unsigned long long)va_arg(*ap, unsigned long long)));
+	else if (*iter == 'x')
+		return (put_x(va_arg(*ap, unsigned int)));
+	else if (*iter == 'X')
+		return (put_x(va_arg(*ap, unsigned int)));
 	// else if (*iter == '%')
-	// 	return (put_per(*ap));
+	// 	return (ft_putchar(*iter));
 	return (0);
 }
 
@@ -87,15 +79,23 @@ int	ft_printf(const char *format, ...)
 
 int	main()
 {
-	printf("---------------c----------------\n");
-	printf("printf:\t\t  %c %c %c \n", '1', '2', '3');
-	ft_printf("ft_printf:\t  %c %c %c \n", '1', '2', '3');
-	printf("printf:\t\t %c %c %c \n", '0', 0, '1');
-	ft_printf("ft_printf:\t %c %c %c \n", '0', 0, '1');
-	printf("printf:\t\t %c %c %c \n", 0, '1', '2');
-	ft_printf("ft_printf:\t %c %c %c \n", 0, '1', '2');
-	printf("---------------s----------------\n");
-	printf("printf:\t\t%s\n", "111");
-	printf("ft_printf:\t%s\n", "111");
+	// printf("---------------c----------------\n");
+	// printf("printf:\t\t  %c %c %c \n", '1', '2', '3');
+	// ft_printf("ft_printf:\t  %c %c %c \n", '1', '2', '3');
+	// printf("---------------s----------------\n");
+	// printf("printf:\t\t%s\n", "111");
+	// ft_printf("ft_printf:\t%s\n", "111");
+	// printf("---------------p----------------\n");
+	// char *str = "Hello";
+	// int	x = 100;
+	// int	d;
+	// int	e;
+	// d = printf("printf:\t\t%p %p\n", str, &x);
+	// e = ft_printf("ft_printf:\t%p %p\n", str, &x);
+	// printf("%d %d\n", d, e);
+	// printf("printf:\t\t %p \n", 15);
+	// ft_printf("ft_printf:\t %p \n", 15);
+	printf("---------------x----------------\n");
+	printf(" %x ", -1);
 	return 0;
 }
