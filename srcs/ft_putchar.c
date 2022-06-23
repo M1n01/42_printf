@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 17:17:39 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 14:15:06 by minabe           ###   ########.fr       */
+/*   Created: 2022/05/19 17:17:04 by minabe            #+#    #+#             */
+/*   Updated: 2022/06/23 22:37:31 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putstr(char *s)
+int	ft_putchar(char c)
 {
-	return (write(1, s, ft_strlen(s)));
+	return (write(1, &c, 1));
 }
