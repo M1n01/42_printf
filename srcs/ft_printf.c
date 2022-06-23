@@ -6,22 +6,24 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:27 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 21:57:42 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:29:16 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	putnbr_hex(unsigned long long nbr)
+int	putnbr_hex(unsigned long long nbr, char conv)
 {
 	int	res;
 
 	res = 0;
 	if (nbr / 16 != 0)
-		res += putnbr_hex(nbr / 16);
-	if ((nbr % 16) >= 10)
+		res += putnbr_hex(nbr / 16, conv);
+	if ((nbr % 16) >= 10 && conv == 'x')
 		res += ft_putchar((nbr % 16) - 10 + 'a');
+	else if ((nbr % 16) >= 10 && conv == 'X')
+		res += ft_putchar((nbr % 16) - 10 + 'A');
 	else
 		res += ft_putchar((nbr % 16) + '0');
 	return (res);
@@ -40,20 +42,18 @@ static int	put_conv(char *iter, va_list *ap)
 	else if (*iter == 'u')
 		return (put_u((unsigned long long)va_arg(*ap, unsigned long long)));
 	else if (*iter == 'x')
-		return (put_x(va_arg(*ap, unsigned int)));
+		return (put_x(va_arg(*ap, unsigned int), *iter));
 	else if (*iter == 'X')
-		return (put_x(va_arg(*ap, unsigned int)));
-	// else if (*iter == '%')
-	// 	return (ft_putchar(*iter));
+		return (put_x(va_arg(*ap, unsigned int), *iter));
+	else if (*iter == '%')
+		return (ft_putchar(*iter));
 	return (0);
 }
-
-#include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
 	int		res;
-	char 	*iter;
+	char	*iter;
 	va_list	ap;
 
 	iter = (char *)format;
@@ -75,27 +75,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (res);
-}
-
-int	main()
-{
-	// printf("---------------c----------------\n");
-	// printf("printf:\t\t  %c %c %c \n", '1', '2', '3');
-	// ft_printf("ft_printf:\t  %c %c %c \n", '1', '2', '3');
-	// printf("---------------s----------------\n");
-	// printf("printf:\t\t%s\n", "111");
-	// ft_printf("ft_printf:\t%s\n", "111");
-	// printf("---------------p----------------\n");
-	// char *str = "Hello";
-	// int	x = 100;
-	// int	d;
-	// int	e;
-	// d = printf("printf:\t\t%p %p\n", str, &x);
-	// e = ft_printf("ft_printf:\t%p %p\n", str, &x);
-	// printf("%d %d\n", d, e);
-	// printf("printf:\t\t %p \n", 15);
-	// ft_printf("ft_printf:\t %p \n", 15);
-	printf("---------------x----------------\n");
-	printf(" %x ", -1);
-	return 0;
 }

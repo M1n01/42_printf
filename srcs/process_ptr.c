@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 08:50:02 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/21 21:47:04 by minabe           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:11:18 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	put_p(unsigned long long ptr)
 
 	res = 0;
 	res += ft_putstr("0x");
-	return (res + putnbr_hex(ptr));
+	return (res + putnbr_hex(ptr, 'x'));
 }
